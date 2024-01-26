@@ -6,4 +6,4 @@ def test_calc_discount_100():
 
 
 def test_calc_discount_101():
-    assert calc_discount(101)==10.1
+    assert calc_discount(101) == 10.1
