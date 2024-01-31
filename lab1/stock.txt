@@ -1,0 +1,7 @@
+pencil, 0.15
+printer paper, 1.50
+ruler, 0.55
+eraser, 0.60
+pen, 0.80
+notebook, 1.00
+folder, 1.40
