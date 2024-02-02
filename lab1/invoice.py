@@ -71,7 +71,7 @@ def calculate_vat(amount):
 def calculate_discount(amount):
     '''
     Calculates the amount of discount to apply.
-    Amound over discount threshold has the discount amount applied
+    Amount over discount threshold has the discount amount applied
     '''
     if amount > DISCOUNT_THRESHOLD:
         return amount * DISCOUNT
@@ -99,7 +99,7 @@ def get_user_input(stock_data):
     '''
     Reads user input and checks values
     '''
-    print(''.join(item_list(stock)))
+    print(''.join(item_list(stock_data)))
     in_range = False
     while not in_range:
         user_selected_item = input("Enter Item:")
@@ -155,11 +155,12 @@ def generate_invoice(stock_data, selected_item, quantity):
 # This means the code will not be run when the file is imported into the test scripts.
 
 if __name__ == "__main__":
-    # stock = load_stock("stock.txt")
-    # sel_item, sel_quantity = get_user_input(stock)
-    # print()
-    # print(''.join(generate_invoice(stock, sel_item, sel_quantity)))
+    stock = load_stock("stock.txt")
+    sel_item, sel_quantity = get_user_input(load_stock("stock.txt"))
+    print()
+    print(''.join(generate_invoice(stock, sel_item, sel_quantity)))
     # print(load_stock("stock.txt"))
     # print(item_list(load_stock("stock.txt")))
     # print(''.join(item_list(load_stock("stock.txt"))))
-    print(get_item_number(load_stock("stock.txt"), "folder"))
+    # print(get_item_number(load_stock("stock.txt"), "folder"))
+    print(get_user_input(stock))
