@@ -20,7 +20,6 @@ def question2(amount):
 
     return 0
 
-
 def question3(win, draw, lost):
     # calculate the number of points a team has
     # 3 points for win
