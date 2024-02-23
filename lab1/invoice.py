@@ -5,6 +5,7 @@ Stock data is loaded form the stock.txt file, which contains: item name, price
 and quantity in stock.
 A main program tests this on the command line.
 """
+import builtins
 
 # constants
 VAT_RATE = 0.22
@@ -156,11 +157,9 @@ def generate_invoice(stock_data, selected_item, quantity):
 
 if __name__ == "__main__":
     stock = load_stock("stock.txt")
-    sel_item, sel_quantity = get_user_input(load_stock("stock.txt"))
-    print()
-    print(''.join(generate_invoice(stock, sel_item, sel_quantity)))
-    # print(load_stock("stock.txt"))
-    # print(item_list(load_stock("stock.txt")))
-    # print(''.join(item_list(load_stock("stock.txt"))))
-    # print(get_item_number(load_stock("stock.txt"), "folder"))
-    print(get_user_input(stock))
+    # sel_item, sel_quantity = get_user_input(load_stock("stock.txt"))
+    # print()
+    # print(''.join(generate_invoice(stock, sel_item, sel_quantity)))
+    print(format_invoice('ruler', 0.55, 5, *create_invoice_data(stock, 3, 5)))
+
+

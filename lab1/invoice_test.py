@@ -1,4 +1,3 @@
-# import python
 from invoice import *
 
 
@@ -65,25 +64,32 @@ def test_create_invoice_data():
     assert create_invoice_data(data, 0, 1) == [0.15, 0, 0.03, 0.18]
 
 
-def test_get_user_input_below_out_of_range(monkeypatch):
-    inputs = iter([1, 20])
+def test_get_user_input_in_range_first(monkeypatch):
+    inputs = iter(['1', '5'])
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
-    stock = load_stock("stock.txt")
-    result = get_user_input(stock)
-    assert result == (0, 20)
+    data = load_stock("stock.txt")
+    result = get_user_input(data)
+    assert result == (0, 5)
 
-def test_say_hello(monkeypatch):
-    inputs = iter(['Pavol', 'Kutaj'])
+
+def test_get_user_input_in_range_middle(monkeypatch):
+    inputs = iter(['5', '5'])
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
-    result = say_hello()
-    assert result == "Hello Pavol Kutaj"
-
-def say_hello():
-    name = input("What is your first name?")
-    name2 = input("What is your last name?")
-    print("Hello " + name + " " + name2)
-    return "Hello " + name + " " + name2
+    data = load_stock("stock.txt")
+    result = get_user_input(data)
+    assert result == (4, 5)
 
 
-if __name__ == "__main__":
-    say_hello()
+def test_get_user_input_in_range_last(monkeypatch):
+    inputs = iter(['7', '5'])
+    monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+    data = load_stock("stock.txt")
+    result = get_user_input(data)
+    assert result == (6, 5)
+
+
+def test_format_invoice():
+    data = load_stock('stock.txt')
+    result = format_invoice('ruler', 0.55, 5, *create_invoice_data(data, 3, 5))
+    assert result == "['             INVOICE\n', '=================================\n', 'Item:\t\t|  ruler\n', 'Item Price:\t|  0.55\n', 'Quantity:\t|  5\n', 'Total:\t\t|  3.0\n', 'Discount:\t|  0\n', 'VAT:\t\t|  0.66\n', 'Net Total:\t|  3.66\n']"
+
